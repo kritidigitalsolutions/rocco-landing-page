@@ -10,6 +10,7 @@
           <p>Your ultimate entertainment destination. Stream unlimited movies, exclusive originals, and binge-worthy series in stunning quality.</p>
 
         </div>
+        
         <div class="footer-col">
           <h4><i class="fas fa-link"></i> Quick Links</h4>
           <ul>
@@ -31,6 +32,7 @@
             <li><a href="privacy-policy.php">Privacy Policy</a></li>
             <li><a href="terms-and-conditions.php">Terms &amp; Conditions</a></li>
             <li><a href="refund-policy.php">Refund Policy</a></li>
+            <li><a href="delete-account.php">Delete Account</a></li>
           </ul>
         </div>
       </div>
@@ -40,6 +42,7 @@
           <a href="privacy-policy.php">Privacy Policy</a>
           <a href="terms-and-conditions.php">Terms &amp; Conditions</a>
           <a href="refund-policy.php">Refund Policy</a>
+          <a href="delete-account.php">Delete Account</a>
         </div>
       </div>
     </div>
