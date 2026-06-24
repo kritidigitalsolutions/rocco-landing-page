@@ -1,0 +1,14 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.roccoplay.app",
+      "sha256_cert_fingerprints": [
+        "94:D9:21:A0:53:A7:73:C8:C1:2D:59:8E:7F:5B:84:3F:47:EC:CF:DC:C6:4D:7B:73:C1:E0:28:24:CE:E4:27:E3"
+      ]
+    }
+  }
+]
