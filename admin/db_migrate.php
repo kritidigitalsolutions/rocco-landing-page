@@ -1,5 +1,13 @@
 <?php
 require_once __DIR__ . '/includes/db.php';
+require_once __DIR__ . '/includes/hero_slides_schema.php';
+
+try {
+    ensureHeroSlidesTable($pdo);
+    echo "Hero slides table ready.\n";
+} catch (Exception $e) {
+    echo "Could not prepare hero slides table.\n";
+}
 
 // 1. Add icon_class column to popular_categories (if not exists)
 try {

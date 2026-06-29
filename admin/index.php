@@ -70,6 +70,9 @@ require_once __DIR__ . '/includes/sidebar.php';
         <a href="media_library.php" class="btn-admin btn-gold">
           <i class="fas fa-photo-film"></i> Media Library
         </a>
+        <a href="hero_slides.php" class="btn-admin btn-outline-admin">
+          <i class="fas fa-panorama"></i> Hero Slider
+        </a>
         <a href="site_settings.php" class="btn-admin btn-outline-admin">
           <i class="fas fa-gear"></i> Site Settings
         </a>

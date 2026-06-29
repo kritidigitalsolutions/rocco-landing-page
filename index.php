@@ -1,52 +1,33 @@
 <?php include 'header.php'; ?>
+<?php
+require_once __DIR__ . '/admin/includes/hero_slides_schema.php';
+$defaultHeroSlides = getDefaultHeroSlides();
+
+try {
+    $heroSlides = $pdo->query("SELECT * FROM hero_slides WHERE is_active = 1 ORDER BY display_order ASC, id ASC")->fetchAll();
+    if (count($heroSlides) === 0) {
+        $heroSlides = $defaultHeroSlides;
+    }
+} catch (Exception $e) {
+    $heroSlides = $defaultHeroSlides;
+}
+
+$heroContent = $heroSlides[0];
+?>
   <!-- ============ HERO SECTION ============ -->
   <section class="hero" id="hero">
     <div class="hero-bg">
       <div class="hero-bg-slider" id="heroBgSlider">
-        <!-- Hollywood Banners -->
-        <div class="hero-bg-slide active">
-          <img src="Hero banner/Hollywood hero  banner/wp9875976-hollywood-poster-wallpapers.jpg" alt="Hero" />
+        <?php foreach ($heroSlides as $index => $slide): ?>
+        <?php $heroImg = str_replace(' ', '%20', $slide['image_path']); ?>
+        <div class="hero-bg-slide <?php echo $index === 0 ? 'active' : ''; ?>"
+             data-badge-text="<?php echo htmlspecialchars($slide['badge_text'] ?? '', ENT_QUOTES); ?>"
+             data-badge-icon="<?php echo htmlspecialchars($slide['badge_icon'] ?? 'fas fa-satellite-dish', ENT_QUOTES); ?>"
+             data-heading="<?php echo htmlspecialchars($slide['heading'] ?? '', ENT_QUOTES); ?>"
+             data-paragraph="<?php echo htmlspecialchars($slide['paragraph'] ?? '', ENT_QUOTES); ?>">
+          <img src="<?php echo htmlspecialchars($heroImg); ?>" alt="<?php echo htmlspecialchars($slide['heading'] ?? 'Hero'); ?>" />
         </div>
-        <div class="hero-bg-slide">
-          <img src="Hero banner/Hollywood hero  banner/wp10388053-hollywood-movie-poster-wallpapers.jpg" alt="Hero" />
-        </div>
-        <div class="hero-bg-slide">
-          <img src="Hero banner/Hollywood hero  banner/wp14444805-cinema-poster-wallpapers.jpg" alt="Hero" />
-        </div>
-        <div class="hero-bg-slide">
-          <img src="Hero banner/Hollywood hero  banner/wp10388016-hollywood-movie-poster-wallpapers.jpg" alt="Hero" />
-        </div>
-        <div class="hero-bg-slide">
-          <img src="Hero banner/Hollywood hero  banner/wp15666911-hollywood-posters-wallpapers.jpg" alt="Hero" />
-        </div>
-        <div class="hero-bg-slide">
-          <img src="Hero banner/Hollywood hero  banner/wp8525542-film-poster-wallpapers.jpg" alt="Hero" />
-        </div>
-        <!-- Bollywood Banners -->
-        <div class="hero-bg-slide">
-          <img src="Hero banner/Bollywood hero banner/wp8807405-bollywood-movie-poster-wallpapers.jpg" alt="Hero" />
-        </div>
-        <div class="hero-bg-slide">
-          <img src="Hero banner/Bollywood hero banner/wp8807421-bollywood-movie-poster-wallpapers.jpg" alt="Hero" />
-        </div>
-        <div class="hero-bg-slide">
-          <img src="Hero banner/Bollywood hero banner/wp4253014-bollywood-movies-wallpapers.jpg" alt="Hero" />
-        </div>
-        <div class="hero-bg-slide">
-          <img src="Hero banner/Bollywood hero banner/wp8807385-bollywood-movie-poster-wallpapers.jpg" alt="Hero" />
-        </div>
-        <div class="hero-bg-slide">
-          <img src="Hero banner/Bollywood hero banner/wp8807390-bollywood-movie-poster-wallpapers.jpg" alt="Hero" />
-        </div>
-        <div class="hero-bg-slide">
-          <img src="Hero banner/Bollywood hero banner/wp8807422-bollywood-movie-poster-wallpapers.jpg" alt="Hero" />
-        </div>
-        <div class="hero-bg-slide">
-          <img src="Hero banner/Bollywood hero banner/wp8807444-bollywood-movie-poster-wallpapers.jpg" alt="Hero" />
-        </div>
-        <div class="hero-bg-slide">
-          <img src="Hero banner/Bollywood hero banner/wp8807445-bollywood-movie-poster-wallpapers.jpg" alt="Hero" />
-        </div>
+        <?php endforeach; ?>
       </div>
       <div class="hero-overlay"></div>
       <div class="hero-vignette"></div>
@@ -56,15 +37,15 @@
     <div class="container hero-content">
       <div class="hero-badge">
         <span class="hero-badge-dot"></span>
-        <i class="fas fa-satellite-dish"></i> Streaming Now â€” New Releases Every Week
+        <i class="<?php echo htmlspecialchars($heroContent['badge_icon'] ?? 'fas fa-satellite-dish'); ?>"></i> <span id="heroBadgeText"><?php echo htmlspecialchars($heroContent['badge_text'] ?? ''); ?></span>
       </div>
 
       <h1 class="hero-title">
-        Unlimited Movies, Shows &amp; Originals
+        <span id="heroTitleText"><?php echo htmlspecialchars($heroContent['heading'] ?? 'Unlimited Movies, Shows & Originals'); ?></span>
       </h1>
 
       <p class="hero-description">
-        Dive into thousands of blockbusters, exclusive originals, and binge-worthy series. Stream in stunning 4K on any device, anytime, anywhere.
+        <span id="heroDescriptionText"><?php echo htmlspecialchars($heroContent['paragraph'] ?? ''); ?></span>
       </p>
     </div>
 

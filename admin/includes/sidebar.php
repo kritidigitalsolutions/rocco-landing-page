@@ -20,6 +20,10 @@
           <i class="fas fa-layer-group"></i>
           <span class="link-text">Categories</span>
         </a>
+        <a href="hero_slides.php" class="sidebar-link <?php echo $currentPage === 'hero_slides' ? 'active' : ''; ?>">
+          <i class="fas fa-panorama"></i>
+          <span class="link-text">Hero Slider</span>
+        </a>
         <a href="popular_categories.php" class="sidebar-link <?php echo $currentPage === 'popular_categories' || $currentPage === 'popular_category_add' || $currentPage === 'popular_category_edit' ? 'active' : ''; ?>">
           <i class="fas fa-star"></i>
           <span class="link-text">Popular Categories</span>

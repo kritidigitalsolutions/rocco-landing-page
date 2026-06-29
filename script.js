@@ -112,6 +112,11 @@ ScrollTrigger.create({
 // ─────────────────────────────────────────────
 const heroSlides = document.querySelectorAll('.hero-bg-slide');
 const indicatorsContainer = document.getElementById('heroIndicators');
+const heroBadge = document.querySelector('.hero-badge');
+const heroBadgeIcon = heroBadge ? heroBadge.querySelector('i') : null;
+const heroBadgeText = document.getElementById('heroBadgeText');
+const heroTitleText = document.getElementById('heroTitleText');
+const heroDescriptionText = document.getElementById('heroDescriptionText');
 let currentSlide = 0;
 let heroInterval;
 
@@ -137,8 +142,17 @@ function goToSlide(index) {
     ind.classList.toggle('active', i === index);
   });
 
+  const activeSlide = heroSlides[index];
+  if (activeSlide) {
+    if (heroBadgeIcon) heroBadgeIcon.className = activeSlide.dataset.badgeIcon || 'fas fa-satellite-dish';
+    if (heroBadgeText) heroBadgeText.textContent = activeSlide.dataset.badgeText || '';
+    if (heroTitleText) heroTitleText.textContent = activeSlide.dataset.heading || '';
+    if (heroDescriptionText) heroDescriptionText.textContent = activeSlide.dataset.paragraph || '';
+  }
+
   // Ken Burns effect on active slide
-  const activeImg = heroSlides[index].querySelector('img');
+  const activeImg = activeSlide ? activeSlide.querySelector('img') : null;
+  if (!activeImg) return;
   gsap.killTweensOf(activeImg);
   gsap.fromTo(activeImg,
     { scale: 1.08, x: 0 },
